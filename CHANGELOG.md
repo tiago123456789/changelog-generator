@@ -4,6 +4,14 @@
 
 ### ⚙️ Chores & Maintenance
 
+- **Changelog entry added via finishing touch recipe** — Appended a new structured changelog entry to `CHANGELOG.md` documenting the addition of the CodeRabbit custom "changelog" finishing touch recipe, following Keep a Changelog standards with UTC ISO 8601 timestamps.
+
+---
+
+## [2026-06-29] - 2026-06-29T00:00:00Z
+
+### ⚙️ Chores & Maintenance
+
 - **Changelog updated via finishing touch recipe** — Updated `CHANGELOG.md` to include a new entry for the CodeRabbit custom "changelog" finishing touch recipe, which automatically generates structured changelog entries following Keep a Changelog standards, categorized by New Features, Bug Fixes, and Chores & Maintenance.
 
 ---
