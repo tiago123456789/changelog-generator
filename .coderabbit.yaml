@@ -1,0 +1,12 @@
+reviews:
+  finishing_touches:
+    custom:
+      - name: "changelog"
+        instructions: |
+          Analyze the code changes, pull request title, and description.
+          Generate a concise changelog entry categorized by:
+          - 🚀 New Features
+          - 🐛 Bug Fixes
+          - ⚙️ Chores & Maintenance
+          Format the output using Keep a Changelog standards.
+          Append or prepend this entry into the 'CHANGELOG.md' file at the root.
