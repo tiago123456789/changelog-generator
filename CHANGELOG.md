@@ -4,6 +4,7 @@
 
 ### ⚙️ Chores & Maintenance
 
+- **Changelog recipe finishing touch** — Added a CodeRabbit custom "changelog" finishing touch recipe that automatically generates structured changelog entries following Keep a Changelog standards, categorized by New Features, Bug Fixes, and Chores & Maintenance.
 - **Timestamp format fix** — Corrected the changelog date-time format to use proper UTC ISO 8601 notation by appending the `Z` suffix (e.g. `2026-06-29T00:00:00Z`), ensuring unambiguous timezone representation in all changelog entries.
 
 ---
