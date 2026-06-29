@@ -2,6 +2,14 @@
 
 ## 2026-06-29
 
+### ⚙️ Chores & Maintenance
+
+- Added **changelog custom finishing touch** recipe via CodeRabbit to automate changelog generation on pull requests
+
+---
+
+## 2026-06-29
+
 ### 🚀 New Features
 
 - Added **Export CSV** button to the Todo App UI that triggers a client-side download of `todos.csv`
