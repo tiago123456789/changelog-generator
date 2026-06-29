@@ -1,6 +1,18 @@
 # Histórico de Mudanças
 
-## [2026-06-29] - Kanban Board & CSV Status Support
+## [2026-06-29T00:00:00] - CodeRabbit Recipe: Add custom changelog finishing touch
+
+### 🐛 Bug Fixes
+
+- **CSV import quoting** — Replaced the ad-hoc quote parser with a proper `parseCsvFields` function that correctly handles escaped double-quotes (`""`) inside quoted fields.
+
+### ⚙️ Chores & Maintenance
+
+- Updated changelog date format to ISO 8601 (`YYYY-MM-DDTHH:MM:SS`) for consistency with Keep a Changelog standards.
+
+---
+
+## [2026-06-29T00:00:00] - Kanban Board & CSV Status Support
 
 ### 🚀 New Features
 
