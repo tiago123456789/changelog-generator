@@ -4,6 +4,14 @@
 
 ### ⚙️ Chores & Maintenance
 
+- **Changelog finishing touch recipe applied to stacked PR** — Executed the CodeRabbit custom "changelog" finishing touch recipe on the stacked PR that prepends a new structured entry to `CHANGELOG.md` following Keep a Changelog standards with UTC ISO 8601 timestamps.
+
+---
+
+## [2026-06-29] - 2026-06-29T00:00:00Z
+
+### ⚙️ Chores & Maintenance
+
 - **Changelog finishing touch recipe applied** — Executed the CodeRabbit custom "changelog" finishing touch recipe on the stacked PR adding the custom changelog finishing touch, prepending a new structured entry to `CHANGELOG.md` following Keep a Changelog standards with UTC ISO 8601 timestamps.
 
 ---
