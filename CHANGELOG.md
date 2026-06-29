@@ -1,5 +1,13 @@
 # Histórico de Mudanças
 
+## [2026-06-29 00:00] — Update Changelog
+
+### ⚙️ Chores & Maintenance
+
+- **Changelog entry update** — Prepended a new structured changelog entry to `CHANGELOG.md` documenting the addition of the changelog automation recipe, following Keep a Changelog standards.
+
+---
+
 ## [2026-06-29 00:00] — Add Changelog
 
 ### ⚙️ Chores & Maintenance
