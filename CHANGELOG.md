@@ -1,5 +1,24 @@
 # Histórico de Mudanças
 
+## [2026-06-29] — Kanban Board & CSV Status Support
+
+### 🚀 New Features
+
+- **Kanban board** — Replaced the simple todo list with a three-column Kanban board (To Do, In Progress, Done), giving a visual overview of task progress.
+- **Drag-and-drop tasks** — Cards can be dragged and dropped between Kanban columns to update their status instantly.
+- **Move buttons on cards** — Each card now displays ← and → arrow buttons to move a task to the previous or next column without dragging.
+- **Status field in API** — Todo items now carry a `status` field (`todo`, `in_progress`, `done`) instead of a boolean `done` flag, enabling multi-stage tracking.
+- **CSV export with status column** — Exported CSV files now include a `kanban_board` column that records each task's current Kanban status.
+- **CSV import with status support** — Importing a CSV file now reads the `kanban_board` column and places each task in the correct Kanban column automatically.
+- **Responsive Kanban layout** — On screens narrower than 768 px the board switches to a single-column stacked layout for comfortable mobile use.
+
+### ⚙️ Chores & Maintenance
+
+- Introduced `VALID_STATUSES` constant in the API to centralise status validation.
+- Refactored the `/todos/import` endpoint to accept an `items` array (objects with `text` and `status`) instead of a plain `texts` string array.
+
+---
+
 ## 29/06/2026
 
 - **Importar tarefas de um arquivo CSV** — Agora você pode importar várias tarefas de uma vez usando um botão "Importar CSV". O sistema lê o arquivo e adiciona todas as tarefas automaticamente na sua lista.
