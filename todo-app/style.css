@@ -62,6 +62,21 @@ h1 {
   background: #5a52e0;
 }
 
+#export-btn {
+  padding: 0.6rem 1.25rem;
+  background: #17a2b8;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+#export-btn:hover {
+  background: #138496;
+}
+
 #todo-list {
   list-style: none;
 }
