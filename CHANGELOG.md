@@ -1,11 +1,16 @@
 # Histórico de Mudanças
 
-## [2026-06-29]
+## [2026-06-29] - 2026-06-29
 
 ### 🚀 New Features
 
 - **Import todos from CSV** — Added a new "Import CSV" button to the todo app that allows users to upload a CSV file and bulk-import todos into the list. The importer handles quoted fields, BOM stripping, and skips empty lines.
 - **POST /todos/import API endpoint** — New backend endpoint that accepts an array of todo texts and creates multiple todos in a single request, returning the created items with their assigned IDs.
+
+### 🐛 Bug Fixes
+
+- **CSV import validation** — Import now validates file contents and ignores empty or invalid rows, preventing bad data from being added to the todo list.
+- **Empty CSV feedback** — Users receive a clear alert message when the uploaded CSV file contains no usable todo entries.
 
 ---
 
