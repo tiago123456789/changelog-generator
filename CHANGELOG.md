@@ -1,52 +1,24 @@
-# Changelog
-
-All notable changes to this project will be documented in this file.
-
----
+# Histórico de Mudanças
 
 ## 29/06/2026
 
-### 🚀 New Features
+- **Criação do aplicativo de tarefas** — Foi criado um aplicativo onde você pode adicionar, visualizar, editar e excluir tarefas usando HTML, CSS e JavaScript.
 
-* Added **Todo App (`todo-app/`)**: a vanilla HTML/CSS/JavaScript SPA for task management.
+- **Criação do arquivo README** — Adicionado um arquivo explicando sobre o projeto e como ele funciona.
 
-  * Add new todos via input field (button click or Enter key)
-  * Mark todos as completed with strikethrough
-  * Edit todos inline with save/cancel actions
-  * Delete individual todos
+- **Configuração de revisão automática de código** — Configurada uma ferramenta que revisa o código automaticamente para garantir mais qualidade.
 
-* Added **Todo REST API (`api/`)** with full CRUD support.
+- **Criação de uma API para gerenciar tarefas** — Foi criada uma API (um sistema que permite a comunicação entre programas) para gerenciar as tarefas do aplicativo.
 
-  * `POST /todos` — create todo (with validation)
-  * `GET /todos` — list all todos
-  * `PUT /todos/:id` — update text and/or completion status
-  * `DELETE /todos/:id` — remove todo by ID
+- **Integração do aplicativo com a API** — O aplicativo de tarefas foi conectado à API, então agora as tarefas são salvas em um servidor, e não apenas no navegador. Isso significa que as tarefas não são mais perdidas ao fechar a página.
 
-* Integrated **frontend with backend API**.
+- **Funcionalidade de exportar tarefas para CSV** — Agora é possível exportar a lista de tarefas para um arquivo CSV (um formato que pode ser aberto no Excel ou em programas de planilhas).
 
-  * `fetchTodos()` loads data from `GET /todos` on page load and after mutations
-  * `addTodo()` uses `POST /todos`
-  * `deleteTodo(id)` uses `DELETE /todos/:id`
-  * `saveTodo(id, inputEl)` uses `PUT /todos/:id`
-  * `toggleDone(id)` toggles completion via `PUT /todos/:id`
+- **Melhorias no processo de publicação de mudanças** — Foram criados processos automáticos para:
+  - Gerar automaticamente um histórico de mudanças (changelog) sempre que algo novo for lançado
+  - Melhorar a forma como as mudanças são registradas para ficarem mais fáceis de entender
+  - Usar ferramentas que ajudam a escrever esse histórico de forma mais clara
 
-* Added **GitHub Actions + workflow automation**.
+- **Ajustes nos processos automáticos** — Pequenas correções e melhorias nos processos que rodam automaticamente quando uma nova funcionalidade é publicada.
 
-  * Auto-triggers `@coderabbitai run changelog` on PR creation/update
-  * Introduced versioned workflow to remove manual changelog generation step
-  * Documented changelog generation process in repository
-
-* Added **CSV Export** for todos (`todo-app/`).
-
-  * New **Export CSV** button in the UI triggers a client-side download
-  * Exported file (`todos.csv`) includes `todo` and `exported_at` columns
-  * Timestamp is captured at the moment of export
-  * Proper CSV escaping applied to todo text (double-quote handling)
-
-### ⚙️ Chores & Maintenance
-
-* Enabled **CORS middleware** in Express API to allow cross-origin frontend communication
-* Added `cors` (^2.8.6) dependency to `api/package.json`
-* Added Express 4.x API setup with `package.json` and `package-lock.json`
-* Added `.gitignore` to `api/` to exclude `node_modules/`
-* Updated `.coderabbit.yaml` to include timestamps in changelog entries, enforcing Keep a Changelog format consistency
+- **Atualizações no arquivo README** — O documento explicativo do projeto foi atualizado com mais informações.
