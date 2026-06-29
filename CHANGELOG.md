@@ -4,6 +4,14 @@
 
 ### ⚙️ Chores & Maintenance
 
+- **Custom changelog finishing touch recipe** — Added a custom finishing touch recipe to automatically generate and prepend structured changelog entries to `CHANGELOG.md` on each pull request, following Keep a Changelog standards with categorized sections for new features, bug fixes, and chores & maintenance.
+
+---
+
+## [2026-06-29 00:00] — Add Custom Changelog Finishing Touch
+
+### ⚙️ Chores & Maintenance
+
 - **Custom changelog finishing touch recipe** — Prepended a new structured changelog entry to `CHANGELOG.md` documenting the addition of a custom changelog finishing touch recipe, following Keep a Changelog standards.
 
 ---
