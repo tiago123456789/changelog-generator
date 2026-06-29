@@ -1,5 +1,13 @@
 # Histórico de Mudanças
 
+## [2026-06-29 00:00] — Add Changelog Finishing Touch
+
+### ⚙️ Chores & Maintenance
+
+- **Changelog finishing touch recipe** — Added a CodeRabbit finishing touch recipe that automatically generates and prepends structured changelog entries to `CHANGELOG.md` on each pull request, following Keep a Changelog standards with categorized sections for new features, bug fixes, and maintenance.
+
+---
+
 ## [2026-06-29 00:00] — Add Changelog
 
 ### ⚙️ Chores & Maintenance
