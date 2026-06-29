@@ -2,6 +2,14 @@
 
 ## [2026-06-29] - 2026-06-29T00:00:00Z
 
+### ⚙️ Chores & Maintenance
+
+- **Timestamp format fix** — Corrected the changelog date-time format to use proper UTC ISO 8601 notation by appending the `Z` suffix (e.g. `2026-06-29T00:00:00Z`), ensuring unambiguous timezone representation in all changelog entries.
+
+---
+
+## [2026-06-29] - 2026-06-29T00:00:00Z
+
 ### 🚀 New Features
 
 - **Import todos from CSV** — Added a new "Import CSV" button to the todo app that allows users to upload a CSV file and bulk-import todos into the list. The importer handles quoted fields, BOM stripping, and skips empty lines.
