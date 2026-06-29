@@ -3,7 +3,23 @@ let todos = [];
 
 const input = document.getElementById('todo-input');
 const addBtn = document.getElementById('add-btn');
-const list = document.getElementById('todo-list');
+const columnBodies = {
+  todo: document.getElementById('column-todo'),
+  in_progress: document.getElementById('column-in_progress'),
+  done: document.getElementById('column-done'),
+};
+
+const STATUS_ORDER = ['todo', 'in_progress', 'done'];
+
+function getNextStatus(current) {
+  const idx = STATUS_ORDER.indexOf(current);
+  return idx < STATUS_ORDER.length - 1 ? STATUS_ORDER[idx + 1] : current;
+}
+
+function getPrevStatus(current) {
+  const idx = STATUS_ORDER.indexOf(current);
+  return idx > 0 ? STATUS_ORDER[idx - 1] : current;
+}
 
 async function fetchTodos() {
   const res = await fetch(`${API_BASE}/todos`);
@@ -14,17 +30,23 @@ async function fetchTodos() {
 }
 
 function render() {
-  list.innerHTML = '';
+  for (const body of Object.values(columnBodies)) {
+    body.innerHTML = '';
+  }
 
   for (const todo of todos) {
-    const li = document.createElement('li');
-    li.className = 'todo-item';
-    li.dataset.id = todo.id;
+    const body = columnBodies[todo.status];
+    if (!body) continue;
+
+    const card = document.createElement('div');
+    card.className = 'kanban-card';
+    card.dataset.id = todo.id;
+    card.draggable = true;
 
     if (todo.editing) {
       const editInput = document.createElement('input');
       editInput.type = 'text';
-      editInput.className = 'todo-edit-input';
+      editInput.className = 'card-edit-input';
       editInput.value = todo.text;
 
       const saveBtn = document.createElement('button');
@@ -37,12 +59,14 @@ function render() {
       cancelBtn.textContent = 'Cancel';
       cancelBtn.addEventListener('click', () => cancelEdit(todo.id));
 
-      li.append(editInput, saveBtn, cancelBtn);
+      card.append(editInput, saveBtn, cancelBtn);
     } else {
-      const span = document.createElement('span');
-      span.className = 'todo-text' + (todo.done ? ' done' : '');
-      span.textContent = todo.text;
-      span.addEventListener('click', () => toggleDone(todo.id));
+      const textSpan = document.createElement('span');
+      textSpan.className = 'card-text';
+      textSpan.textContent = todo.text;
+
+      const actions = document.createElement('div');
+      actions.className = 'card-actions';
 
       const editBtn = document.createElement('button');
       editBtn.className = 'btn btn-edit';
@@ -54,10 +78,43 @@ function render() {
       deleteBtn.textContent = 'Delete';
       deleteBtn.addEventListener('click', () => deleteTodo(todo.id));
 
-      li.append(span, editBtn, deleteBtn);
+      actions.append(editBtn, deleteBtn);
+
+      const moveBtns = document.createElement('div');
+      moveBtns.className = 'card-move';
+
+      if (todo.status !== 'todo') {
+        const leftBtn = document.createElement('button');
+        leftBtn.className = 'btn btn-move';
+        leftBtn.textContent = '←';
+        leftBtn.addEventListener('click', () => moveTask(todo.id, getPrevStatus(todo.status)));
+        moveBtns.appendChild(leftBtn);
+      }
+      if (todo.status !== 'done') {
+        const rightBtn = document.createElement('button');
+        rightBtn.className = 'btn btn-move';
+        rightBtn.textContent = '→';
+        rightBtn.addEventListener('click', () => moveTask(todo.id, getNextStatus(todo.status)));
+        moveBtns.appendChild(rightBtn);
+      }
+
+      const footer = document.createElement('div');
+      footer.className = 'card-footer';
+      footer.append(actions, moveBtns);
+
+      card.append(textSpan, footer);
     }
 
-    list.appendChild(li);
+    card.addEventListener('dragstart', (e) => {
+      e.dataTransfer.setData('text/plain', todo.id);
+      card.classList.add('dragging');
+    });
+    card.addEventListener('dragend', () => {
+      card.classList.remove('dragging');
+      document.querySelectorAll('.column').forEach(col => col.classList.remove('drag-over'));
+    });
+
+    body.appendChild(card);
   }
 }
 
@@ -76,6 +133,15 @@ async function addTodo() {
 
 async function deleteTodo(id) {
   await fetch(`${API_BASE}/todos/${id}`, { method: 'DELETE' });
+  await fetchTodos();
+}
+
+async function moveTask(id, newStatus) {
+  await fetch(`${API_BASE}/todos/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ status: newStatus }),
+  });
   await fetchTodos();
 }
 
@@ -107,18 +173,6 @@ function cancelEdit(id) {
   }
 }
 
-async function toggleDone(id) {
-  const todo = todos.find(t => t.id === id);
-  if (!todo) return;
-
-  await fetch(`${API_BASE}/todos/${id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ done: !todo.done }),
-  });
-  await fetchTodos();
-}
-
 function exportCsv() {
   const now = new Date();
   const y = now.getFullYear();
@@ -129,8 +183,12 @@ function exportCsv() {
   const s = String(now.getSeconds()).padStart(2, '0');
   const exportedAt = `${y}-${mo}-${d} ${h}:${mi}:${s}`;
 
-  const rows = todos.map(t => `"${t.text.replace(/"/g, '""')}",${exportedAt}`);
-  const csv = 'todo,exported_at\n' + rows.join('\n');
+  const rows = todos.map(t => {
+    const text = `"${t.text.replace(/"/g, '""')}"`;
+    const status = `"${t.status}"`;
+    return `${text},${status},${exportedAt}`;
+  });
+  const csv = 'todo,kanban_board,exported_at\n' + rows.join('\n');
 
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
   const link = document.createElement('a');
@@ -140,10 +198,65 @@ function exportCsv() {
   URL.revokeObjectURL(link.href);
 }
 
+function parseCsvFields(line) {
+  const fields = [];
+  let current = '';
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (inQuotes) {
+      if (ch === '"') {
+        if (i + 1 < line.length && line[i + 1] === '"') {
+          current += '"';
+          i++;
+        } else {
+          inQuotes = false;
+        }
+      } else {
+        current += ch;
+      }
+    } else {
+      if (ch === '"') {
+        inQuotes = true;
+      } else if (ch === ',') {
+        fields.push(current);
+        current = '';
+      } else {
+        current += ch;
+      }
+    }
+  }
+  fields.push(current);
+  return fields;
+}
+
 addBtn.addEventListener('click', addTodo);
 input.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') addTodo();
 });
+
+document.querySelectorAll('.column').forEach(col => {
+  col.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    col.classList.add('drag-over');
+  });
+  col.addEventListener('dragleave', () => {
+    col.classList.remove('drag-over');
+  });
+  col.addEventListener('drop', (e) => {
+    e.preventDefault();
+    col.classList.remove('drag-over');
+    const id = Number(e.dataTransfer.getData('text/plain'));
+    const newStatus = col.dataset.status;
+    if (id && newStatus) {
+      moveTask(id, newStatus);
+    }
+  });
+});
+
+document.getElementById('export-btn').addEventListener('click', exportCsv);
+document.getElementById('import-btn').addEventListener('click', importCsv);
+
 function importCsv() {
   const input = document.createElement('input');
   input.type = 'file';
@@ -163,37 +276,29 @@ function importCsv() {
         return;
       }
 
-      const texts = [];
+      const items = [];
       for (let i = 1; i < lines.length; i++) {
         const line = lines[i].trim();
         if (!line) continue;
 
-        let text;
-        if (line[0] === '"') {
-          let j = 1;
-          while (j < line.length) {
-            if (line[j] === '"') {
-              if (j + 1 < line.length && line[j + 1] === '"') {
-                j += 2;
-              } else {
-                text = line.slice(1, j).replace(/""/g, '"');
-                break;
-              }
-            } else {
-              j++;
-            }
+        const fields = parseCsvFields(line);
+        if (fields.length === 0) continue;
+
+        const text = fields[0].trim();
+        if (!text) continue;
+
+        let status = 'todo';
+        if (fields.length >= 2 && fields[1].trim()) {
+          const s = fields[1].trim().toLowerCase();
+          if (['todo', 'in_progress', 'done'].includes(s)) {
+            status = s;
           }
-        } else {
-          const commaIdx = line.indexOf(',');
-          text = commaIdx !== -1 ? line.slice(0, commaIdx) : line;
         }
 
-        if (text && text.trim()) {
-          texts.push(text.trim());
-        }
+        items.push({ text, status });
       }
 
-      if (!texts.length) {
+      if (!items.length) {
         alert('No valid todos found in CSV');
         return;
       }
@@ -202,7 +307,7 @@ function importCsv() {
         const res = await fetch(`${API_BASE}/todos/import`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ texts }),
+          body: JSON.stringify({ items }),
         });
         if (!res.ok) throw new Error((await res.json()).error || 'Import failed');
         await fetchTodos();
@@ -215,8 +320,5 @@ function importCsv() {
 
   input.click();
 }
-
-document.getElementById('export-btn').addEventListener('click', exportCsv);
-document.getElementById('import-btn').addEventListener('click', importCsv);
 
 fetchTodos();

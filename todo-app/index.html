@@ -3,19 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todo App</title>
+  <title>Kanban Todo App</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>Todo App</h1>
+    <h1>Kanban Todo</h1>
     <div class="input-group">
       <input type="text" id="todo-input" placeholder="Add a new todo..." />
       <button id="add-btn">Add</button>
       <button id="export-btn">Export CSV</button>
       <button id="import-btn">Import CSV</button>
     </div>
-    <ul id="todo-list"></ul>
+    <div class="kanban-board">
+      <div class="column" data-status="todo">
+        <h2>To Do</h2>
+        <div class="column-body" id="column-todo"></div>
+      </div>
+      <div class="column" data-status="in_progress">
+        <h2>In Progress</h2>
+        <div class="column-body" id="column-in_progress"></div>
+      </div>
+      <div class="column" data-status="done">
+        <h2>Done</h2>
+        <div class="column-body" id="column-done"></div>
+      </div>
+    </div>
   </div>
   <script src="script.js"></script>
 </body>
