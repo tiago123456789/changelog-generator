@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2026-06-29T00:00:00Z] - Changelog Update: Todo Management API
+
+### ⚙️ Chores & Maintenance
+
+- Updated `CHANGELOG.md` to document the Todo Management API release, including new REST endpoints (`POST`, `GET`, `PUT`, `DELETE /todos`) and related package/config files.
+
 ## [2026-06-29T00:00:00Z] - Todo Management API
 
 ### 🚀 New Features
