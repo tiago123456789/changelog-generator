@@ -1,51 +1,33 @@
 # Histórico de Mudanças
 
-## [2026-06-29T00:00:00] - Kanban Board & CSV Status Support
-
-### 🚀 New Features
-
-- **Kanban board** — Replaced the simple todo list with a three-column Kanban board (To Do, In Progress, Done), giving a visual overview of task progress.
-- **Drag-and-drop tasks** — Cards can be dragged and dropped between Kanban columns to update their status instantly.
-- **Move buttons on cards** — Each card exposes ← and → arrow buttons to move a task to the previous or next column without dragging.
-- **Status field in API** — Todo items now carry a `status` field (`todo`, `in_progress`, `done`) replacing the boolean `done` flag, enabling multi-stage tracking.
-- **CSV export with status column** — Exported CSV files now include a `kanban_board` column recording each task's current Kanban status.
-- **CSV import with status support** — Importing a CSV reads the `kanban_board` column and places each task in the correct Kanban column automatically.
-- **Responsive Kanban layout** — On screens narrower than 768 px the board switches to a single-column stacked layout for comfortable mobile use.
-
-### ⚙️ Chores & Maintenance
-
-- Introduced `VALID_STATUSES` constant in `api/index.js` to centralise status validation.
-- Refactored the `/todos/import` endpoint to accept an `items` array (objects with `text` and `status`) instead of a plain `texts` string array.
-
----
-
 ## 29/06/2026
 
-- **Importar tarefas de um arquivo CSV** — Agora você pode importar várias tarefas de uma vez usando um botão "Importar CSV". O sistema lê o arquivo e adiciona todas as tarefas automaticamente na sua lista.
+### Novidades
 
-- **Nova forma de criar várias tarefas de uma só vez** — Foi criada uma função no servidor que permite cadastrar várias tarefas em um único envio, poupando tempo e esforço.
+- **Quadro Kanban** — A antiga lista de tarefas foi substituída por um quadro visual dividido em três colunas (A Fazer, Fazendo, Pronto). Assim você consegue ver rapidamente o andamento de cada tarefa.
 
----
+- **Arraste e solte tarefas** — Agora você pode arrastar os cartões de uma coluna para outra para mudar o status da tarefa sem precisar clicar em botões.
 
-## 29/06/2026
+- **Botões para mover tarefas** — Cada cartão tem setas ← e → que permitem mover a tarefa para a coluna anterior ou seguinte, sem precisar arrastar.
 
-- **Criação do aplicativo de tarefas** — Foi criado um aplicativo onde você pode adicionar, visualizar, editar e excluir tarefas usando HTML, CSS e JavaScript.
+- **Campo de situação na lista de tarefas** — Cada tarefa agora tem um campo de "situação" (a fazer, fazendo, pronto) no lugar do antigo "sim/não" de concluído. Assim fica mais fácil acompanhar o progresso.
 
-- **Criação do arquivo README** — Adicionado um arquivo explicando sobre o projeto e como ele funciona.
+- **Exportar CSV com a situação da tarefa** — Na hora de exportar suas tarefas para um arquivo de planilha, agora também é salvo em qual coluna do quadro cada tarefa está.
 
-- **Configuração de revisão automática de código** — Configurada uma ferramenta que revisa o código automaticamente para garantir mais qualidade.
+- **Importar CSV com suporte à situação** — Ao importar um arquivo de planilha, o sistema lê automaticamente a coluna de situação e coloca cada tarefa no lugar certo do quadro.
 
-- **Criação de uma API para gerenciar tarefas** — Foi criada uma API (um sistema que permite a comunicação entre programas) para gerenciar as tarefas do aplicativo.
+- **Quadro adaptável para celular** — Em telas menores que 768 pixels, o quadro se ajusta automaticamente para uma única coluna, ficando mais fácil de usar no celular.
 
-- **Integração do aplicativo com a API** — O aplicativo de tarefas foi conectado à API, então agora as tarefas são salvas em um servidor, e não apenas no navegador. Isso significa que as tarefas não são mais perdidas ao fechar a página.
+- **Importar tarefas de um arquivo CSV** — Agora você pode importar várias tarefas de uma vez usando o botão "Importar CSV". É só selecionar o arquivo e todas as tarefas são adicionadas de uma só vez.
 
-- **Funcionalidade de exportar tarefas para CSV** — Agora é possível exportar a lista de tarefas para um arquivo CSV (um formato que pode ser aberto no Excel ou em programas de planilhas).
+- **Criação do aplicativo de tarefas** — Foi criado um aplicativo onde você pode adicionar, ver, editar e excluir tarefas.
 
-- **Melhorias no processo de publicação de mudanças** — Foram criados processos automáticos para:
-  - Gerar automaticamente um histórico de mudanças (changelog) sempre que algo novo for lançado
-  - Melhorar a forma como as mudanças são registradas para ficarem mais fáceis de entender
-  - Usar ferramentas que ajudam a escrever esse histórico de forma mais clara
+- **Criação da API para gerenciar tarefas** — Foi criado um sistema que permite a comunicação entre o aplicativo e o servidor, para que suas tarefas fiquem salvas online.
 
-- **Ajustes nos processos automáticos** — Pequenas correções e melhorias nos processos que rodam automaticamente quando uma nova funcionalidade é publicada.
+- **Integração do aplicativo com o servidor** — O aplicativo de tarefas foi conectado ao servidor, então agora as tarefas são salvas automaticamente e não se perdem mais quando você fecha a página.
 
-- **Atualizações no arquivo README** — O documento explicativo do projeto foi atualizado com mais informações.
+- **Exportar tarefas para planilha** — Agora você pode baixar sua lista de tarefas em formato CSV, que pode ser aberto no Excel ou em outros programas de planilhas.
+
+- **Melhorias nos processos automáticos** — Foram criados processos para gerar automaticamente este histórico de mudanças sempre que algo novo for lançado, além de pequenas correções e melhorias nos processos que rodam automaticamente.
+
+- **Documentação do projeto** — Foi criado e atualizado o arquivo README com explicações sobre o projeto e como ele funciona.
