@@ -1,5 +1,16 @@
 # Changelog
 
+## 29/06/2026 – 00:16
+
+### ⚙️ Chores & Maintenance
+
+* Updated **CHANGELOG.md** to document the changelog finishing touch recipe execution:
+
+  * Added timestamped changelog entry (`29/06/2026 – 00:15`) following Keep a Changelog format
+  * Entry covers the update to CHANGELOG.md that documented the previous changelog automation chore
+
+---
+
 ## 29/06/2026 – 00:15
 
 ### ⚙️ Chores & Maintenance
