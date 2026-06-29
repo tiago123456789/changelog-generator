@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2026-06-29T12:00:00Z] - Add Changelog Finishing Touch
+
+### ⚙️ Chores & Maintenance
+
+- Added CodeRabbit changelog finishing touch recipe to `CHANGELOG.md`, automating the generation of timestamped, categorized changelog entries (🚀 New Features, 🐛 Bug Fixes, ⚙️ Chores & Maintenance) on each pull request.
+- Updated `CHANGELOG.md` entry timestamp to `2026-06-29T12:00:00Z` to align with Keep a Changelog timestamped standards.
+
 ## [2026-06-29T12:00:00Z] - Update Changelog Finishing Touch
 
 ### ⚙️ Chores & Maintenance
