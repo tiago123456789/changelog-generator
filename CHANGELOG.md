@@ -1,5 +1,16 @@
 # Changelog
 
+## 29/06/2026 – 00:01
+
+### ⚙️ Chores & Maintenance
+
+* Updated **CHANGELOG.md** to document the CSV Export feature for todos:
+
+  * Added timestamped changelog entry (`29/06/2026 – 00:00`) following Keep a Changelog format
+  * Entry covers new "Export CSV" button, file format, timestamp capture, and CSV escaping details
+
+---
+
 ## 29/06/2026 – 00:00
 
 ### 🚀 New Features
