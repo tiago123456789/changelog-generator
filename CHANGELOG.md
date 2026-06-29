@@ -1,5 +1,22 @@
 # Histórico de Mudanças
 
+## [Unreleased] — 29/06/2026 00:00 — Login e Autenticação
+
+### 🚀 New Features
+
+- **Login page** — Created a login screen with email and password fields, allowing only authorized users to access the task board.
+- **Authentication endpoint (`POST /auth/login`)** — The API now has a login endpoint that validates credentials and returns a JWT token valid for 24 hours.
+- **JWT-protected API routes** — All task routes (`/todos`) now require a valid JWT token in the `Authorization` header. Requests without a token or with an invalid token receive a `401` response.
+- **Logout with session cleanup** — A "Logout" button was added to the main panel. On click, the token is removed and the user is redirected to the login page.
+- **Automatic session redirect** — When the app opens, if a valid token is already saved in `localStorage`, the user goes directly to the dashboard. Otherwise, the login screen is shown.
+- **Expired token handling** — If the API returns `401`, the app automatically logs out and redirects the user to the login screen.
+
+### ⚙️ Chores & Maintenance
+
+- **Added `jsonwebtoken` dependency** — The `jsonwebtoken` library (v9.0.3) was added to the API for JWT generation and validation.
+
+---
+
 ## 29/06/2026 — Login e Autenticação
 
 ### 🚀 Novas Funcionalidades
