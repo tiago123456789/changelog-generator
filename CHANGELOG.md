@@ -1,5 +1,21 @@
 # Histórico de Mudanças
 
+## [2026-06-29T00:00:00Z] — Changelog Finishing Touch: Login e Autenticação
+
+### 🚀 New Features
+
+- **English changelog entry** — Added a Keep a Changelog–formatted entry in English for the Login and Authentication milestone, covering the login page, authentication endpoint, JWT-protected routes, logout flow, and automatic session redirect.
+
+### 🐛 Bug Fixes
+
+- **Expired token handling documented** — Changelog now documents the automatic logout and redirect behaviour triggered by a `401` response from the API.
+
+### ⚙️ Chores & Maintenance
+
+- **Changelog standardisation** — Adopted Keep a Changelog formatting with ISO 8601 date headers, emoji-prefixed sections, and bold entry titles for improved readability.
+
+---
+
 ## [2026-06-29] — Login e Autenticação
 
 ### 🚀 New Features
