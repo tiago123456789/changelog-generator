@@ -1,6 +1,6 @@
 # Histórico de Mudanças
 
-## [2026-06-29] - 2026-06-29
+## [2026-06-29] - 2026-06-29T00:00:00
 
 ### 🚀 New Features
 
@@ -11,6 +11,10 @@
 
 - **CSV import validation** — Import now validates file contents and ignores empty or invalid rows, preventing bad data from being added to the todo list.
 - **Empty CSV feedback** — Users receive a clear alert message when the uploaded CSV file contains no usable todo entries.
+
+### ⚙️ Chores & Maintenance
+
+- **CodeRabbit custom recipe** — Added a custom "changelog" finishing touch recipe to automate structured changelog generation following Keep a Changelog standards.
 
 ---
 
