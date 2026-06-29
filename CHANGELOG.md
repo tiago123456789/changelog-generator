@@ -1,5 +1,25 @@
 # Histórico de Mudanças
 
+## [2026-06-29] — Login e Autenticação
+
+### 🚀 New Features
+
+- **Login page** — Added a login screen with email and password fields, requiring authentication before accessing the Kanban board.
+- **Authentication endpoint (`POST /auth/login`)** — New API endpoint that validates credentials and returns a JWT token valid for 24 hours.
+- **JWT-protected API routes** — All `/todos` routes now require a valid JWT in the `Authorization` header; requests without a valid token receive a `401` response.
+- **Logout with session cleanup** — Added a "Sair" (logout) button to the main panel that clears the token and redirects to the login page.
+- **Automatic session-based redirect** — On app load, if a valid token exists in `localStorage`, the user is taken directly to the board; otherwise the login screen is shown.
+
+### 🐛 Bug Fixes
+
+- **Expired token handling** — If the API returns `401`, the app now automatically logs out and redirects the user to the login page instead of failing silently.
+
+### ⚙️ Chores & Maintenance
+
+- **Added `jsonwebtoken` dependency** — The `jsonwebtoken` library (v9.0.3) was added to the API for JWT generation and validation.
+
+---
+
 ## 29/06/2026 — Login e Autenticação
 
 ### 🚀 Novas Funcionalidades
