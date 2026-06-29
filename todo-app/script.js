@@ -1,9 +1,17 @@
-const todos = [];
-let nextId = 1;
+const API_BASE = 'http://localhost:3000';
+let todos = [];
 
 const input = document.getElementById('todo-input');
 const addBtn = document.getElementById('add-btn');
 const list = document.getElementById('todo-list');
+
+async function fetchTodos() {
+  const res = await fetch(`${API_BASE}/todos`);
+  const data = await res.json();
+  const editingIds = new Set(todos.filter(t => t.editing).map(t => t.id));
+  todos = data.map(t => ({ ...t, editing: editingIds.has(t.id) }));
+  render();
+}
 
 function render() {
   list.innerHTML = '';
@@ -53,57 +61,62 @@ function render() {
   }
 }
 
-function addTodo() {
+async function addTodo() {
   const text = input.value.trim();
   if (!text) return;
 
-  todos.push({ id: nextId++, text, done: false, editing: false });
+  await fetch(`${API_BASE}/todos`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text }),
+  });
   input.value = '';
-  render();
+  await fetchTodos();
 }
 
-function deleteTodo(id) {
-  const idx = todos.findIndex((t) => t.id === id);
-  if (idx !== -1) {
-    todos.splice(idx, 1);
-    render();
-  }
+async function deleteTodo(id) {
+  await fetch(`${API_BASE}/todos/${id}`, { method: 'DELETE' });
+  await fetchTodos();
 }
 
 function startEdit(id) {
-  const todo = todos.find((t) => t.id === id);
+  const todo = todos.find(t => t.id === id);
   if (todo) {
     todo.editing = true;
     render();
   }
 }
 
-function saveTodo(id, inputEl) {
+async function saveTodo(id, inputEl) {
   const text = inputEl.value.trim();
   if (!text) return;
 
-  const todo = todos.find((t) => t.id === id);
-  if (todo) {
-    todo.text = text;
-    todo.editing = false;
-    render();
-  }
+  await fetch(`${API_BASE}/todos/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text }),
+  });
+  await fetchTodos();
 }
 
 function cancelEdit(id) {
-  const todo = todos.find((t) => t.id === id);
+  const todo = todos.find(t => t.id === id);
   if (todo) {
     todo.editing = false;
     render();
   }
 }
 
-function toggleDone(id) {
-  const todo = todos.find((t) => t.id === id);
-  if (todo) {
-    todo.done = !todo.done;
-    render();
-  }
+async function toggleDone(id) {
+  const todo = todos.find(t => t.id === id);
+  if (!todo) return;
+
+  await fetch(`${API_BASE}/todos/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ done: !todo.done }),
+  });
+  await fetchTodos();
 }
 
 addBtn.addEventListener('click', addTodo);
@@ -111,4 +124,4 @@ input.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') addTodo();
 });
 
-render();
+fetchTodos();
