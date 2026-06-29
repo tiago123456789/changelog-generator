@@ -1,5 +1,17 @@
 # Histórico de Mudanças
 
+## [2026-06-29T00:00:00Z] — Changelog Finishing Touch: Add Changelog Custom Finishing Touch
+
+### 🚀 New Features
+
+- **Changelog finishing touch recipe** — Added a CodeRabbit recipe that automatically prepends a Keep a Changelog–formatted entry to `CHANGELOG.md` upon PR merge, with emoji-prefixed sections (New Features, Bug Fixes, Chores & Maintenance) and ISO 8601 timestamps.
+
+### ⚙️ Chores & Maintenance
+
+- **CHANGELOG.md updated** — Prepended a structured changelog entry documenting the automated changelog finishing touch recipe, including details on the new CodeRabbit recipe integration and Keep a Changelog standardisation applied to previous entries.
+
+---
+
 ## [2026-06-29T00:00:00Z] — Changelog Finishing Touch: Add Custom Finishing Touch Changelog
 
 ### 🚀 New Features
