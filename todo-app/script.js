@@ -1,5 +1,10 @@
 const API_BASE = 'http://localhost:3000';
 let todos = [];
+let token = localStorage.getItem('token');
+
+function authHeaders() {
+  return token ? { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' } : { 'Content-Type': 'application/json' };
+}
 
 const input = document.getElementById('todo-input');
 const addBtn = document.getElementById('add-btn');
@@ -21,8 +26,79 @@ function getPrevStatus(current) {
   return idx > 0 ? STATUS_ORDER[idx - 1] : current;
 }
 
+async function login(email, password) {
+  const res = await fetch(`${API_BASE}/auth/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password }),
+  });
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.error || 'Falha no login');
+  }
+  const data = await res.json();
+  token = data.token;
+  localStorage.setItem('token', token);
+}
+
+function logout() {
+  token = null;
+  localStorage.removeItem('token');
+}
+
+function showAdminPage() {
+  document.getElementById('login-page').classList.add('hidden');
+  document.getElementById('admin-page').classList.remove('hidden');
+  history.pushState(null, '', '/admin');
+  fetchTodos();
+}
+
+function showLoginPage() {
+  document.getElementById('login-page').classList.remove('hidden');
+  document.getElementById('admin-page').classList.add('hidden');
+  history.pushState(null, '', '/');
+}
+
+document.getElementById('login-btn').addEventListener('click', async () => {
+  const email = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
+  const errorEl = document.getElementById('login-error');
+  errorEl.classList.add('hidden');
+  if (!email || !password) {
+    errorEl.textContent = 'Preencha email e senha';
+    errorEl.classList.remove('hidden');
+    return;
+  }
+  try {
+    await login(email, password);
+    showAdminPage();
+  } catch (err) {
+    errorEl.textContent = err.message;
+    errorEl.classList.remove('hidden');
+  }
+});
+
+document.getElementById('login-email').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') document.getElementById('login-btn').click();
+});
+document.getElementById('login-password').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') document.getElementById('login-btn').click();
+});
+
+document.getElementById('logout-btn').addEventListener('click', () => {
+  logout();
+  showLoginPage();
+});
+
+if (token) {
+  showAdminPage();
+} else {
+  showLoginPage();
+}
+
 async function fetchTodos() {
-  const res = await fetch(`${API_BASE}/todos`);
+  const res = await fetch(`${API_BASE}/todos`, { headers: authHeaders() });
+  if (res.status === 401) { logout(); showLoginPage(); return; }
   const data = await res.json();
   const editingIds = new Set(todos.filter(t => t.editing).map(t => t.id));
   todos = data.map(t => ({ ...t, editing: editingIds.has(t.id) }));
@@ -124,7 +200,7 @@ async function addTodo() {
 
   await fetch(`${API_BASE}/todos`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: authHeaders(),
     body: JSON.stringify({ text }),
   });
   input.value = '';
@@ -132,14 +208,14 @@ async function addTodo() {
 }
 
 async function deleteTodo(id) {
-  await fetch(`${API_BASE}/todos/${id}`, { method: 'DELETE' });
+  await fetch(`${API_BASE}/todos/${id}`, { method: 'DELETE', headers: authHeaders() });
   await fetchTodos();
 }
 
 async function moveTask(id, newStatus) {
   await fetch(`${API_BASE}/todos/${id}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
+    headers: authHeaders(),
     body: JSON.stringify({ status: newStatus }),
   });
   await fetchTodos();
@@ -159,7 +235,7 @@ async function saveTodo(id, inputEl) {
 
   await fetch(`${API_BASE}/todos/${id}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
+    headers: authHeaders(),
     body: JSON.stringify({ text }),
   });
   await fetchTodos();
@@ -306,7 +382,7 @@ function importCsv() {
       try {
         const res = await fetch(`${API_BASE}/todos/import`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: authHeaders(),
           body: JSON.stringify({ items }),
         });
         if (!res.ok) throw new Error((await res.json()).error || 'Import failed');
@@ -320,5 +396,3 @@ function importCsv() {
 
   input.click();
 }
-
-fetchTodos();
