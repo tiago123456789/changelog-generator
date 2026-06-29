@@ -7,26 +7,41 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Kanban Todo</h1>
-    <div class="input-group">
-      <input type="text" id="todo-input" placeholder="Add a new todo..." />
-      <button id="add-btn">Add</button>
-      <button id="export-btn">Export CSV</button>
-      <button id="import-btn">Import CSV</button>
+  <div id="login-page">
+    <div class="login-card">
+      <h1>Kanban Todo</h1>
+      <p class="login-subtitle">Faça login para continuar</p>
+      <input type="email" id="login-email" placeholder="Email" autocomplete="email" />
+      <input type="password" id="login-password" placeholder="Senha" autocomplete="current-password" />
+      <button id="login-btn">Entrar</button>
+      <p id="login-error" class="login-error hidden"></p>
     </div>
-    <div class="kanban-board">
-      <div class="column" data-status="todo">
-        <h2>To Do</h2>
-        <div class="column-body" id="column-todo"></div>
+  </div>
+  <div id="admin-page" class="hidden">
+    <div class="container">
+      <div class="top-bar">
+        <h1>Kanban Todo</h1>
+        <button id="logout-btn">Sair</button>
       </div>
-      <div class="column" data-status="in_progress">
-        <h2>In Progress</h2>
-        <div class="column-body" id="column-in_progress"></div>
+      <div class="input-group">
+        <input type="text" id="todo-input" placeholder="Add a new todo..." />
+        <button id="add-btn">Add</button>
+        <button id="export-btn">Export CSV</button>
+        <button id="import-btn">Import CSV</button>
       </div>
-      <div class="column" data-status="done">
-        <h2>Done</h2>
-        <div class="column-body" id="column-done"></div>
+      <div class="kanban-board">
+        <div class="column" data-status="todo">
+          <h2>To Do</h2>
+          <div class="column-body" id="column-todo"></div>
+        </div>
+        <div class="column" data-status="in_progress">
+          <h2>In Progress</h2>
+          <div class="column-body" id="column-in_progress"></div>
+        </div>
+        <div class="column" data-status="done">
+          <h2>Done</h2>
+          <div class="column-body" id="column-done"></div>
+        </div>
       </div>
     </div>
   </div>

@@ -1,18 +1,43 @@
 import cors from 'cors';
 import express from 'express';
+import jwt from 'jsonwebtoken';
 
 const app = express();
 const PORT = 3000;
+const JWT_SECRET = 'chave-secreta-todo-app';
 
 app.use(cors());
 app.use(express.json());
+
+function authMiddleware(req, res, next) {
+  const header = req.headers.authorization;
+  if (!header || !header.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'Token não fornecido' });
+  }
+  try {
+    const token = header.split(' ')[1];
+    req.user = jwt.verify(token, JWT_SECRET);
+    next();
+  } catch {
+    return res.status(401).json({ error: 'Token inválido' });
+  }
+}
+
+app.post('/auth/login', (req, res) => {
+  const { email, password } = req.body;
+  if (email === 'admin@gmail.com' && password === '123') {
+    const token = jwt.sign({ email }, JWT_SECRET, { expiresIn: '24h' });
+    return res.json({ token });
+  }
+  return res.status(401).json({ error: 'Credenciais inválidas' });
+});
 
 const todos = [];
 let nextId = 1;
 
 const VALID_STATUSES = ['todo', 'in_progress', 'done'];
 
-app.post('/todos', (req, res) => {
+app.post('/todos', authMiddleware, (req, res) => {
   const { text } = req.body;
   if (!text || typeof text !== 'string' || !text.trim()) {
     return res.status(400).json({ error: 'text is required' });
@@ -22,7 +47,7 @@ app.post('/todos', (req, res) => {
   res.status(201).json(todo);
 });
 
-app.post('/todos/import', (req, res) => {
+app.post('/todos/import', authMiddleware, (req, res) => {
   const { items } = req.body;
   if (!Array.isArray(items) || items.length === 0) {
     return res.status(400).json({ error: 'items must be a non-empty array' });
@@ -41,11 +66,11 @@ app.post('/todos/import', (req, res) => {
   res.status(201).json(created);
 });
 
-app.get('/todos', (_req, res) => {
+app.get('/todos', authMiddleware, (_req, res) => {
   res.json(todos);
 });
 
-app.put('/todos/:id', (req, res) => {
+app.put('/todos/:id', authMiddleware, (req, res) => {
   const id = Number(req.params.id);
   const todo = todos.find((t) => t.id === id);
   if (!todo) {
@@ -67,7 +92,7 @@ app.put('/todos/:id', (req, res) => {
   res.json(todo);
 });
 
-app.delete('/todos/:id', (req, res) => {
+app.delete('/todos/:id', authMiddleware, (req, res) => {
   const id = Number(req.params.id);
   const idx = todos.findIndex((t) => t.id === id);
   if (idx === -1) {
