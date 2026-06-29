@@ -8,5 +8,6 @@ reviews:
           - 🚀 New Features
           - 🐛 Bug Fixes
           - ⚙️ Chores & Maintenance
+          - Set date and time on changelogs
           Format the output using Keep a Changelog standards.
           Append or prepend this entry into the 'CHANGELOG.md' file at the root.
