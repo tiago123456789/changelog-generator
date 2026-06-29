@@ -4,8 +4,7 @@ on:
   pull_request:
     types: [opened, synchronize]
     paths:
-      - 'src/**'
-      - 'config/*.json'
+      - '*'
 
 # Required to allow the workflow to write comments on the PR
 permissions:
