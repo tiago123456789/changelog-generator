@@ -1,55 +1,43 @@
 # Histórico de Mudanças
 
-## 29/06/2026 — Login e Autenticação
-
-### 🚀 Novas Funcionalidades
-
-- **Página de login** — Foi criada uma tela de login com campos de e-mail e senha, permitindo que apenas usuários autorizados acessem o quadro de tarefas.
-
-- **Endpoint de autenticação (`POST /auth/login`)** — A API agora possui um endpoint de login que valida as credenciais e retorna um token JWT válido por 24 horas.
-
-- **Proteção das rotas da API com JWT** — Todas as rotas de tarefas (`/todos`) agora exigem um token JWT válido no cabeçalho `Authorization`. Requisições sem token ou com token inválido recebem resposta `401`.
-
-- **Logout com limpeza de sessão** — Um botão "Sair" foi adicionado ao painel principal. Ao clicar, o token é removido e o usuário é redirecionado para a página de login.
-
-- **Redirecionamento automático por sessão** — Ao abrir o aplicativo, se um token válido já estiver salvo no `localStorage`, o usuário é levado direto ao painel. Caso contrário, é exibida a tela de login.
-
-- **Tratamento de token expirado** — Se a API retornar `401`, o aplicativo faz logout automático e redireciona o usuário para a tela de login.
-
-### ⚙️ Manutenção
-
-- **Dependência `jsonwebtoken` adicionada** — A biblioteca `jsonwebtoken` (v9.0.3) foi incluída na API para geração e validação de tokens JWT.
-
----
-
 ## 29/06/2026
 
-### Novidades
+### 🔒 Login e Segurança
 
-- **Quadro Kanban** — A antiga lista de tarefas foi substituída por um quadro visual dividido em três colunas (A Fazer, Fazendo, Pronto). Assim você consegue ver rapidamente o andamento de cada tarefa.
+- **Tela de login** — Agora existe uma tela onde você digita seu e-mail e senha para entrar. Só quem tem acesso autorizado consegue usar o quadro de tarefas.
 
-- **Arraste e solte tarefas** — Agora você pode arrastar os cartões de uma coluna para outra para mudar o status da tarefa sem precisar clicar em botões.
+- **Proteção do sistema** — As informações do sistema são protegidas com um token de segurança que dura 24 horas. Se o token vencer, o sistema faz o logout sozinho e volta para a tela de login.
 
-- **Botões para mover tarefas** — Cada cartão tem setas ← e → que permitem mover a tarefa para a coluna anterior ou seguinte, sem precisar arrastar.
+- **Botão Sair** — Você pode clicar em "Sair" para encerrar sua sessão a qualquer momento, e o sistema te leva de volta para a tela de login.
 
-- **Campo de situação na lista de tarefas** — Cada tarefa agora tem um campo de "situação" (a fazer, fazendo, pronto) no lugar do antigo "sim/não" de concluído. Assim fica mais fácil acompanhar o progresso.
+- **Entrada automática** — Se você já fez login antes e o token ainda é válido, o sistema te leva direto para o painel, sem precisar digitar e-mail e senha de novo.
 
-- **Exportar CSV com a situação da tarefa** — Na hora de exportar suas tarefas para um arquivo de planilha, agora também é salvo em qual coluna do quadro cada tarefa está.
+### 📋 Quadro de Tarefas
 
-- **Importar CSV com suporte à situação** — Ao importar um arquivo de planilha, o sistema lê automaticamente a coluna de situação e coloca cada tarefa no lugar certo do quadro.
+- **Quadro visual** — A lista de tarefas virou um quadro com três colunas: A Fazer, Fazendo e Pronto. Assim você vê de um jeito fácil o que está pendente, o que está sendo feito e o que já foi concluído.
 
-- **Quadro adaptável para celular** — Em telas menores que 768 pixels, o quadro se ajusta automaticamente para uma única coluna, ficando mais fácil de usar no celular.
+- **Arraste e solte** — Para mudar uma tarefa de coluna, é só arrastar o cartão com o mouse para o lugar certo.
 
-- **Importar tarefas de um arquivo CSV** — Agora você pode importar várias tarefas de uma vez usando o botão "Importar CSV". É só selecionar o arquivo e todas as tarefas são adicionadas de uma só vez.
+- **Botões para mover** — Cada cartão também tem setinhas ← e → para mover a tarefa entre as colunas, sem precisar arrastar.
 
-- **Criação do aplicativo de tarefas** — Foi criado um aplicativo onde você pode adicionar, ver, editar e excluir tarefas.
+- **Campo de situação** — Cada tarefa mostra em qual etapa ela está (a fazer, fazendo ou pronto), no lugar do antigo "sim/não" de concluído.
 
-- **Criação da API para gerenciar tarefas** — Foi criado um sistema que permite a comunicação entre o aplicativo e o servidor, para que suas tarefas fiquem salvas online.
+- **Funciona no celular** — Em telas menores, o quadro se ajusta sozinho para mostrar uma coluna por vez, facilitando o uso no celular.
 
-- **Integração do aplicativo com o servidor** — O aplicativo de tarefas foi conectado ao servidor, então agora as tarefas são salvas automaticamente e não se perdem mais quando você fecha a página.
+### 📁 Importar e Exportar
 
-- **Exportar tarefas para planilha** — Agora você pode baixar sua lista de tarefas em formato CSV, que pode ser aberto no Excel ou em outros programas de planilhas.
+- **Importar CSV** — Você pode importar várias tarefas de uma vez clicando em "Importar CSV" e selecionando um arquivo. As tarefas são carregadas de uma só vez.
 
-- **Melhorias nos processos automáticos** — Foram criados processos para gerar automaticamente este histórico de mudanças sempre que algo novo for lançado, além de pequenas correções e melhorias nos processos que rodam automaticamente.
+- **Exportar CSV** — Dá para baixar sua lista de tarefas como um arquivo CSV, que abre no Excel ou em outros programas de planilha.
 
-- **Documentação do projeto** — Foi criado e atualizado o arquivo README com explicações sobre o projeto e como ele funciona.
+- **Importar e exportar com situação** — Tanto na hora de importar quanto de exportar, o sistema considera em qual coluna do quadro cada tarefa está.
+
+### 🛠️ Melhorias Internas
+
+- **Aplicativo de tarefas** — Foi criado um aplicativo onde você pode adicionar, ver, editar e excluir tarefas.
+
+- **Guarda automática na nuvem** — As tarefas são salvas automaticamente no servidor, então você não perde nada quando fecha a página.
+
+- **Documentação** — O arquivo README foi criado e atualizado com explicações sobre o projeto e como usar.
+
+- **Automação** — Foram criados processos para gerar este histórico de mudanças automaticamente sempre que algo novo for lançado.
