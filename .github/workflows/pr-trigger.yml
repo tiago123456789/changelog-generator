@@ -1,0 +1,26 @@
+name: PR File Change Automation
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - 'src/**'
+      - 'config/*.json'
+
+# Required to allow the workflow to write comments on the PR
+permissions:
+  pull-requests: write
+
+jobs:
+  comment-on-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Replaced "Run Test Script" with the PR commenting step
+      - name: Create Comment on PR
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          message: |
+            @coderabbitai run changelog
