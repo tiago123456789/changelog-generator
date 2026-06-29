@@ -23,7 +23,8 @@ jobs:
         run: npm --version && npm install -g opencode-ai@latest
 
       - name: Run prompt
-        run: opencode run "Read the file CHANGELOG.md, generate a new version in Portuguese and for no technical person and group by date and time on format DD/MM/YYYY. PS: replace the ./CHANGELOG.md with the changelog generated"
+        run: |
+          opencode run "Read the file CHANGELOG.md, generate a new version in Portuguese and for no technical person and group by date and time on format DD/MM/YYYY. PS: replace the ./CHANGELOG.md with the changelog generated"
 
       - name: Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v5
