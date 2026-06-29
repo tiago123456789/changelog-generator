@@ -1,5 +1,9 @@
 # Changelog
 
+All notable changes to this project will be documented in this file.
+
+---
+
 ## 29/06/2026
 
 ### 🚀 New Features
@@ -11,14 +15,14 @@
   * Edit todos inline with save/cancel actions
   * Delete individual todos
 
-* Added **Todo REST API (`api/`)** with full CRUD support:
+* Added **Todo REST API (`api/`)** with full CRUD support.
 
   * `POST /todos` — create todo (with validation)
   * `GET /todos` — list all todos
   * `PUT /todos/:id` — update text and/or completion status
   * `DELETE /todos/:id` — remove todo by ID
 
-* Integrated **frontend with backend API**:
+* Integrated **frontend with backend API**.
 
   * `fetchTodos()` loads data from `GET /todos` on page load and after mutations
   * `addTodo()` uses `POST /todos`
@@ -26,18 +30,23 @@
   * `saveTodo(id, inputEl)` uses `PUT /todos/:id`
   * `toggleDone(id)` toggles completion via `PUT /todos/:id`
 
-* Added **GitHub Actions + workflow automation**:
+* Added **GitHub Actions + workflow automation**.
 
   * Auto-triggers `@coderabbitai run changelog` on PR creation/update
   * Introduced versioned workflow to remove manual changelog generation step
   * Documented changelog generation process in repository
 
----
+* Added **CSV Export** for todos (`todo-app/`).
+
+  * New **Export CSV** button in the UI triggers a client-side download
+  * Exported file (`todos.csv`) includes `todo` and `exported_at` columns
+  * Timestamp is captured at the moment of export
+  * Proper CSV escaping applied to todo text (double-quote handling)
 
 ### ⚙️ Chores & Maintenance
 
 * Enabled **CORS middleware** in Express API to allow cross-origin frontend communication
 * Added `cors` (^2.8.6) dependency to `api/package.json`
-* Added `express` 4.x API setup with `package.json` and `package-lock.json`
+* Added Express 4.x API setup with `package.json` and `package-lock.json`
 * Added `.gitignore` to `api/` to exclude `node_modules/`
-* Updated `.coderabbit.yaml` to include timestamp in changelog entries, enforcing Keep a Changelog format consistency
+* Updated `.coderabbit.yaml` to include timestamps in changelog entries, enforcing Keep a Changelog format consistency
