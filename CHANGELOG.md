@@ -1,5 +1,16 @@
 # Changelog
 
+## 29/06/2026 – 00:02
+
+### ⚙️ Chores & Maintenance
+
+* Updated **CHANGELOG.md** to document the changelog automation chore:
+
+  * Added timestamped changelog entry (`29/06/2026 – 00:01`) following Keep a Changelog format
+  * Entry covers the update to CHANGELOG.md that documented the CSV Export changelog entry
+
+---
+
 ## 29/06/2026 – 00:01
 
 ### ⚙️ Chores & Maintenance
