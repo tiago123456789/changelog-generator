@@ -1,5 +1,15 @@
 # Histórico de Mudanças
 
+## [2026-06-29T00:00:00] - Changelog Cleanup & Standardization
+
+### ⚙️ Chores & Maintenance
+
+- Standardized changelog version header separator from em dash (`—`) to hyphen (`-`) for Keep a Changelog compliance.
+- Removed duplicate changelog section for `[2026-06-29]` (without timestamp), consolidating into the single timestamped entry.
+- Refined wording in feature bullet points for clarity and consistency.
+
+---
+
 ## [2026-06-29T00:00:00] - Kanban Board & CSV Status Support
 
 ### 🚀 New Features
