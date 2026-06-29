@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2026-06-29T00:00:00Z] - Todo Management API
+
+### 🚀 New Features
+
+- Added `api/` — a Node.js/Express REST API for managing todos.
+  - `POST /todos` — create a new todo item with text validation.
+  - `GET /todos` — retrieve the full list of todos.
+  - `PUT /todos/:id` — update a todo's text and/or completion status with input validation.
+  - `DELETE /todos/:id` — remove a todo by ID.
+
+### ⚙️ Chores & Maintenance
+
+- Added `api/package.json` and `api/package-lock.json` with Express 4.x dependency.
+- Added `api/.gitignore` to exclude `node_modules/` from version control.
+
 ## [2026-06-29]
 
 ### ⚙️ Chores & Maintenance
