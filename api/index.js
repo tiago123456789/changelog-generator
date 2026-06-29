@@ -10,29 +10,32 @@ app.use(express.json());
 const todos = [];
 let nextId = 1;
 
+const VALID_STATUSES = ['todo', 'in_progress', 'done'];
+
 app.post('/todos', (req, res) => {
   const { text } = req.body;
   if (!text || typeof text !== 'string' || !text.trim()) {
     return res.status(400).json({ error: 'text is required' });
   }
-  const todo = { id: nextId++, text: text.trim(), done: false };
+  const todo = { id: nextId++, text: text.trim(), status: 'todo' };
   todos.push(todo);
   res.status(201).json(todo);
 });
 
 app.post('/todos/import', (req, res) => {
-  const { texts } = req.body;
-  if (!Array.isArray(texts) || texts.length === 0) {
-    return res.status(400).json({ error: 'texts must be a non-empty array' });
+  const { items } = req.body;
+  if (!Array.isArray(items) || items.length === 0) {
+    return res.status(400).json({ error: 'items must be a non-empty array' });
   }
   const created = [];
-  for (const text of texts) {
-    if (typeof text === 'string' && text.trim()) {
-      created.push({ id: nextId++, text: text.trim(), done: false });
+  for (const item of items) {
+    if (item && typeof item.text === 'string' && item.text.trim()) {
+      const status = VALID_STATUSES.includes(item.status) ? item.status : 'todo';
+      created.push({ id: nextId++, text: item.text.trim(), status });
     }
   }
   if (created.length === 0) {
-    return res.status(400).json({ error: 'no valid texts provided' });
+    return res.status(400).json({ error: 'no valid items provided' });
   }
   todos.push(...created);
   res.status(201).json(created);
@@ -48,18 +51,18 @@ app.put('/todos/:id', (req, res) => {
   if (!todo) {
     return res.status(404).json({ error: 'todo not found' });
   }
-  const { text, done } = req.body;
+  const { text, status } = req.body;
   if (text !== undefined) {
     if (typeof text !== 'string' || !text.trim()) {
       return res.status(400).json({ error: 'text must be a non-empty string' });
     }
     todo.text = text.trim();
   }
-  if (done !== undefined) {
-    if (typeof done !== 'boolean') {
-      return res.status(400).json({ error: 'done must be a boolean' });
+  if (status !== undefined) {
+    if (!VALID_STATUSES.includes(status)) {
+      return res.status(400).json({ error: 'status must be todo, in_progress, or done' });
     }
-    todo.done = done;
+    todo.status = status;
   }
   res.json(todo);
 });
