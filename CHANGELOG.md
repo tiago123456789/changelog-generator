@@ -1,6 +1,6 @@
 # Histórico de Mudanças
 
-## [Unreleased] — 29/06/2026 00:00 — Login e Autenticação
+## [2026-06-29] — Login and Authentication
 
 ### 🚀 New Features
 
