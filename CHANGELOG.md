@@ -4,6 +4,18 @@
 
 ### 🚀 New Features
 
+- **Custom changelog finishing touch recipe** — Introduced a CodeRabbit recipe that automatically generates a Keep a Changelog–formatted entry on PR merge, categorising changes into New Features, Bug Fixes, and Chores & Maintenance sections with ISO 8601 timestamps and prepending the entry to `CHANGELOG.md`.
+
+### ⚙️ Chores & Maintenance
+
+- **CHANGELOG.md updated** — Prepended a structured changelog entry documenting the addition of the custom changelog finishing touch recipe requested by @tiago123456789.
+
+---
+
+## [2026-06-29T00:00:00Z] — CodeRabbit Recipe: Add Custom Changelog Finishing Touch
+
+### 🚀 New Features
+
 - **Custom changelog finishing touch recipe** — Added a CodeRabbit recipe that automatically generates a Keep a Changelog–formatted entry upon PR merge, categorising changes into New Features, Bug Fixes, and Chores & Maintenance sections with ISO 8601 timestamps.
 
 ### ⚙️ Chores & Maintenance
