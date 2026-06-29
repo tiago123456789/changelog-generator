@@ -1,5 +1,15 @@
 # Histórico de Mudanças
 
+## [2026-06-29T00:00:00] - Changelog Format Standardization Recipe
+
+### ⚙️ Chores & Maintenance
+
+- Applied CodeRabbit finishing touch recipe to generate and prepend a structured changelog entry for the changelog cleanup PR.
+- Consolidated changelog header format to use hyphen (`-`) separator, aligning with Keep a Changelog standards.
+- Removed duplicate `[2026-06-29]` section (without timestamp), merging it into the single timestamped entry.
+
+---
+
 ## [2026-06-29T00:00:00] - Changelog Cleanup & Standardization
 
 ### ⚙️ Chores & Maintenance
