@@ -4,6 +4,14 @@
 
 ### ⚙️ Chores & Maintenance
 
+- **Finishing touch recipe configured** — Added the "changelog" custom finishing touch recipe to automatically generate and prepend structured changelog entries for pull requests, following Keep a Changelog standards with categorization by features, bug fixes, and maintenance tasks.
+
+---
+
+## [2026-06-29T00:00:00] - CodeRabbit Recipe: Add custom finishing touch changelog
+
+### ⚙️ Chores & Maintenance
+
 - **Changelog entry prepended** — Executed the "changelog" finishing touch recipe to generate and prepend a structured changelog entry for the "Add custom finishing touch changelog" PR, following Keep a Changelog standards.
 
 ---
