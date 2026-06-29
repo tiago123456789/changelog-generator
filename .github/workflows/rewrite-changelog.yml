@@ -23,8 +23,13 @@ jobs:
         run: npm --version && npm install -g opencode-ai@latest
 
       - name: Run prompt
-        run: opencode run "Tell me a joke"
+        run: opencode run "Read the file CHANGELOG.md, generate a new version in Portuguese and for no technical person and group by date and time on format DD/MM/YYYY. PS: generate the the changelog as output" > CHANGELOG.md
 
+      - name: Commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: automatically update CHANGELOG.md"
+          file_pattern: "CHANGELOG.md"
       # - name: Post CodeRabbit Command
       #   uses: actions/github-script@v7
       #   with:
