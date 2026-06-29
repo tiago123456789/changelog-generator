@@ -20,7 +20,7 @@ jobs:
 
       # Step 3: Install dependencies
       - name: Install Dependencies
-        run: npm --version
+        run: npm --version && npm install -g opencode-ai@latest
 
       # - name: Post CodeRabbit Command
       #   uses: actions/github-script@v7
