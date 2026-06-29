@@ -17,9 +17,6 @@ jobs:
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
-        with:
-          node-node-version: '24'
-          cache: 'npm' # Speeds up subsequent runs
 
       # Step 3: Install dependencies
       - name: Install Dependencies
