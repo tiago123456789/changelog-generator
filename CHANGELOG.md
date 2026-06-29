@@ -1,5 +1,13 @@
 # Histórico de Mudanças
 
+## [2026-06-29 00:00] — Update Changelog
+
+### ⚙️ Chores & Maintenance
+
+- **Changelog update** — Updated `CHANGELOG.md` to document the changelog timestamp formatting change, adding a structured entry following Keep a Changelog standards.
+
+---
+
 ## [2026-06-29 00:00] — Changelog Formatting Update
 
 ### ⚙️ Chores & Maintenance
