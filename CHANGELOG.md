@@ -4,6 +4,14 @@
 
 ### ⚙️ Chores & Maintenance
 
+- Added **changelog custom finishing touch** recipe via CodeRabbit to automate changelog generation on pull requests (second iteration, refining automation workflow)
+
+---
+
+## 2026-06-29
+
+### ⚙️ Chores & Maintenance
+
 - Added **changelog custom finishing touch** recipe via CodeRabbit to automate changelog generation on pull requests
 
 ---
