@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2026-06-29T00:00:00Z] - Update Changelog Formatting
+
+### ⚙️ Chores & Maintenance
+
+- Updated `CHANGELOG.md` formatting to ensure changelog entries follow consistent Keep a Changelog standards with timestamped versions.
+- Entry documents the PR "🔧 CodeRabbit Recipe: Update changelog formatting", which prepended a new formatted changelog entry for the `changelog` finishing touch recipe automation.
+
 ## [2026-06-29T00:00:00Z] - Changelog Recipe: Add Custom Finishing Touch Changelog
 
 ### ⚙️ Chores & Maintenance
