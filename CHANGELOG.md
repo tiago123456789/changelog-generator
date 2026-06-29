@@ -1,5 +1,13 @@
 # Histórico de Mudanças
 
+## [2026-06-29T00:00:00] - CodeRabbit Recipe: Update changelog for custom finishing touch
+
+### ⚙️ Chores & Maintenance
+
+- **Changelog entry updated** — Prepended a new structured changelog entry for the "Update changelog for custom finishing touch" PR, following Keep a Changelog standards.
+
+---
+
 ## [2026-06-29T00:00:00] - CodeRabbit Recipe: Add changelog custom finishing touch
 
 ### ⚙️ Chores & Maintenance
