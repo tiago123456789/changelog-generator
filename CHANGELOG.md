@@ -1,5 +1,13 @@
 # Histórico de Mudanças
 
+## [2026-06-29 00:00] — Add Changelog
+
+### ⚙️ Chores & Maintenance
+
+- **Changelog generation** — Added automated changelog entry generation via the custom CodeRabbit finishing touch recipe, prepending structured entries to `CHANGELOG.md` following Keep a Changelog standards with categorized sections for new features, bug fixes, and maintenance.
+
+---
+
 ## [2026-06-29 00:00] — Add Custom Changelog Finishing Touch
 
 ### ⚙️ Chores & Maintenance
