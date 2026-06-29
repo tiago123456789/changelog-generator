@@ -1,11 +1,10 @@
 # Histórico de Mudanças
 
-## [2026-06-29]
+## 29/06/2026
 
-### 🚀 New Features
+- **Importar tarefas de um arquivo CSV** — Agora você pode importar várias tarefas de uma vez usando um botão "Importar CSV". O sistema lê o arquivo e adiciona todas as tarefas automaticamente na sua lista.
 
-- **Import todos from CSV** — Added a new "Import CSV" button to the todo app that allows users to upload a CSV file and bulk-import todos into the list. The importer handles quoted fields, BOM stripping, and skips empty lines.
-- **POST /todos/import API endpoint** — New backend endpoint that accepts an array of todo texts and creates multiple todos in a single request, returning the created items with their assigned IDs.
+- **Nova forma de criar várias tarefas de uma só vez** — Foi criada uma função no servidor que permite cadastrar várias tarefas em um único envio, poupando tempo e esforço.
 
 ---
 
