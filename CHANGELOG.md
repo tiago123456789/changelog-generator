@@ -1,5 +1,14 @@
 # Histórico de Mudanças
 
+## [2026-06-29T00:00:00] - Add Custom Changelog Finishing Touch
+
+### ⚙️ Chores & Maintenance
+
+- Added custom CodeRabbit finishing touch recipe (`changelog`) to automatically generate and prepend structured changelog entries on each PR.
+- Recipe follows Keep a Changelog standards with categorized sections (🚀 New Features, 🐛 Bug Fixes, ⚙️ Chores & Maintenance) and ISO 8601 timestamps.
+
+---
+
 ## [2026-06-29T00:00:00] - Changelog Format Standardization Recipe
 
 ### ⚙️ Chores & Maintenance
