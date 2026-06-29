@@ -1,6 +1,15 @@
 # Histórico de Mudanças
 
-## [2026-06-29T00:00:00] - Add Changelog Custom Finishing Touch Recipe (Latest)
+## [2026-06-29T00:00:00] - Update Changelog Finishing Touch (Latest)
+
+### ⚙️ Chores & Maintenance
+
+- Updated the `changelog` custom finishing touch recipe entry title in `CHANGELOG.md`, renaming it from "Add Custom Finishing Touch Changelog Recipe" to "Add Changelog Custom Finishing Touch Recipe" for improved clarity and consistency.
+- Change applied via PR "🔧 CodeRabbit Recipe: Update changelog finishing touch", requested by @tiago123456789.
+
+---
+
+## [2026-06-29T00:00:00] - Add Changelog Custom Finishing Touch Recipe
 
 ### ⚙️ Chores & Maintenance
 
