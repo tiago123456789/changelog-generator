@@ -1,5 +1,13 @@
 # Histórico de Mudanças
 
+## [2026-06-29 00:00] — Update Changelog
+
+### ⚙️ Chores & Maintenance
+
+- **Changelog recipe execution** — Prepended a new structured changelog entry to `CHANGELOG.md` documenting the execution of the custom "changelog" finishing touch recipe triggered by PR #369, following Keep a Changelog standards with categorized sections.
+
+---
+
 ## [2026-06-29 00:00] — Add Changelog for Custom Finishing Touch Recipe
 
 ### ⚙️ Chores & Maintenance
