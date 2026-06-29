@@ -4,6 +4,14 @@
 
 ### ⚙️ Chores & Maintenance
 
+- **Changelog recipe executed** — Applied the "changelog" finishing touch recipe to generate and prepend a structured changelog entry for this PR, categorized according to Keep a Changelog standards.
+
+---
+
+## [2026-06-29T00:00:00] - CodeRabbit Recipe: Add custom changelog finishing touch
+
+### ⚙️ Chores & Maintenance
+
 - **Changelog entry prepended** — Executed the "changelog" finishing touch recipe to generate and prepend a structured changelog entry for the "Add custom changelog finishing touch" PR, following Keep a Changelog standards.
 
 ---
