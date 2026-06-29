@@ -1,5 +1,18 @@
 # Histórico de Mudanças
 
+## [2026-06-29T00:00:00Z] — Changelog Finishing Touch: Add Custom Finishing Touch Changelog
+
+### 🚀 New Features
+
+- **Automated changelog finishing touch** — Introduced a CodeRabbit recipe that automatically generates a Keep a Changelog–formatted entry upon PR merge, categorising changes into New Features, Bug Fixes, and Chores & Maintenance sections with ISO 8601 timestamps.
+
+### ⚙️ Chores & Maintenance
+
+- **Changelog entry for Login and Authentication** — Prepended a structured English changelog entry documenting the login page, authentication endpoint (`POST /auth/login`), JWT-protected routes, logout flow, expired token handling, and session-based redirect behaviour.
+- **Keep a Changelog standardisation** — Applied ISO 8601 date headers, emoji-prefixed section titles, and bold entry labels across new changelog entries for improved readability and consistency.
+
+---
+
 ## [2026-06-29T00:00:00Z] — Changelog Finishing Touch: Login e Autenticação
 
 ### 🚀 New Features
