@@ -144,6 +144,79 @@ addBtn.addEventListener('click', addTodo);
 input.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') addTodo();
 });
+function importCsv() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.csv';
+
+  input.addEventListener('change', function (e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async function (evt) {
+      const content = evt.target.result;
+      const lines = content.replace(/^\uFEFF/, '').split('\n');
+
+      if (lines.length < 2) {
+        alert('CSV file has no data rows');
+        return;
+      }
+
+      const texts = [];
+      for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+
+        let text;
+        if (line[0] === '"') {
+          let j = 1;
+          while (j < line.length) {
+            if (line[j] === '"') {
+              if (j + 1 < line.length && line[j + 1] === '"') {
+                j += 2;
+              } else {
+                text = line.slice(1, j).replace(/""/g, '"');
+                break;
+              }
+            } else {
+              j++;
+            }
+          }
+        } else {
+          const commaIdx = line.indexOf(',');
+          text = commaIdx !== -1 ? line.slice(0, commaIdx) : line;
+        }
+
+        if (text && text.trim()) {
+          texts.push(text.trim());
+        }
+      }
+
+      if (!texts.length) {
+        alert('No valid todos found in CSV');
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API_BASE}/todos/import`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ texts }),
+        });
+        if (!res.ok) throw new Error((await res.json()).error || 'Import failed');
+        await fetchTodos();
+      } catch (err) {
+        alert('Import failed: ' + err.message);
+      }
+    };
+    reader.readAsText(file);
+  });
+
+  input.click();
+}
+
 document.getElementById('export-btn').addEventListener('click', exportCsv);
+document.getElementById('import-btn').addEventListener('click', importCsv);
 
 fetchTodos();

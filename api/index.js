@@ -20,6 +20,24 @@ app.post('/todos', (req, res) => {
   res.status(201).json(todo);
 });
 
+app.post('/todos/import', (req, res) => {
+  const { texts } = req.body;
+  if (!Array.isArray(texts) || texts.length === 0) {
+    return res.status(400).json({ error: 'texts must be a non-empty array' });
+  }
+  const created = [];
+  for (const text of texts) {
+    if (typeof text === 'string' && text.trim()) {
+      created.push({ id: nextId++, text: text.trim(), done: false });
+    }
+  }
+  if (created.length === 0) {
+    return res.status(400).json({ error: 'no valid texts provided' });
+  }
+  todos.push(...created);
+  res.status(201).json(created);
+});
+
 app.get('/todos', (_req, res) => {
   res.json(todos);
 });
