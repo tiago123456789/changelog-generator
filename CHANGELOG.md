@@ -1,5 +1,13 @@
 # Histórico de Mudanças
 
+## [2026-06-29 00:00] — Changelog Formatting Update
+
+### ⚙️ Chores & Maintenance
+
+- **Changelog timestamp format** — Updated changelog date entries to include time (`YYYY-MM-DD HH:MM`) for more precise release tracking, aligning with Keep a Changelog standards.
+
+---
+
 ## [2026-06-29 00:00] — Login and Authentication
 
 ### 🚀 New Features
