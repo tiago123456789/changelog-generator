@@ -1,5 +1,13 @@
 # Histórico de Mudanças
 
+## [2026-06-29 00:00] — Update Changelog with Custom Finishing Touch
+
+### ⚙️ Chores & Maintenance
+
+- **Changelog entry update** — Updated `CHANGELOG.md` to prepend a structured changelog entry documenting the latest custom finishing touch recipe run, following Keep a Changelog standards with categorized sections for new features, bug fixes, and chores & maintenance.
+
+---
+
 ## [2026-06-29 00:00] — Add Custom Finishing Touch Changelog
 
 ### ⚙️ Chores & Maintenance
