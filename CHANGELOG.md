@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2026-06-29T00:00:00Z]
+
+### 🚀 New Features
+
+- Integrated the `todo-app` frontend with the `api` backend: all todo operations (fetch, add, edit, delete, toggle done) now communicate with the REST API instead of keeping state in the browser.
+  - `fetchTodos()` — loads todos from `GET /todos` on page load and after each mutation.
+  - `addTodo()` — sends `POST /todos` with the new todo text.
+  - `deleteTodo(id)` — sends `DELETE /todos/:id` to remove a todo.
+  - `saveTodo(id, inputEl)` — sends `PUT /todos/:id` to update todo text.
+  - `toggleDone(id)` — sends `PUT /todos/:id` to toggle completion status.
+- Enabled CORS on the API (`cors` middleware added to Express app) so the frontend can call the API from a different origin.
+
+### ⚙️ Chores & Maintenance
+
+- Added `cors` (^2.8.6) as a runtime dependency to `api/package.json`.
+
+---
+
 ### ⚙️ Chores & Maintenance
 
 - Added `api/package.json` and `api/package-lock.json` with Express 4.x dependency.
