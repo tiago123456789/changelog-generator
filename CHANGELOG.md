@@ -1,6 +1,6 @@
 # Histórico de Mudanças
 
-## [2026-06-29T00:00:00] - Kanban Board & CSV Status Support
+## [2026-06-29] - Kanban Board & CSV Status Support
 
 ### 🚀 New Features
 
@@ -11,6 +11,10 @@
 - **CSV export with status column** — Exported CSV files now include a `kanban_board` column recording each task's current Kanban status.
 - **CSV import with status support** — Importing a CSV reads the `kanban_board` column and places each task in the correct Kanban column automatically.
 - **Responsive Kanban layout** — On screens narrower than 768 px the board switches to a single-column stacked layout for comfortable mobile use.
+
+### 🐛 Bug Fixes
+
+- **CSV import quoting** — Replaced the ad-hoc quote parser with a proper `parseCsvFields` function that correctly handles escaped double-quotes (`""`) inside quoted fields.
 
 ### ⚙️ Chores & Maintenance
 
