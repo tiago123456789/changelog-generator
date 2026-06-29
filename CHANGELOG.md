@@ -1,15 +1,12 @@
 # Changelog
 
-## 29/06/2026 – 00:00
+## 2026-06-29
 
 ### 🚀 New Features
 
-* Added **CSV Export** for todos (`todo-app/`):
-
-  * New "Export CSV" button in the UI triggers a client-side download
-  * Exported file (`todos.csv`) includes `todo` and `exported_at` columns
-  * Timestamp is captured at the moment of export
-  * Proper CSV escaping applied to todo text (double-quote handling)
+- Added **Export CSV** button to the Todo App UI that triggers a client-side download of `todos.csv`
+- Exported CSV file includes `todo` and `exported_at` columns with a timestamp captured at the moment of export
+- Applied proper CSV escaping to todo text (double-quote character handling)
 
 ---
 
