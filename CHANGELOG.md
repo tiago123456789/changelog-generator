@@ -1,5 +1,27 @@
 # Histórico de Mudanças
 
+## 29/06/2026 — Login e Autenticação
+
+### 🚀 Novas Funcionalidades
+
+- **Página de login** — Foi criada uma tela de login com campos de e-mail e senha, permitindo que apenas usuários autorizados acessem o quadro de tarefas.
+
+- **Endpoint de autenticação (`POST /auth/login`)** — A API agora possui um endpoint de login que valida as credenciais e retorna um token JWT válido por 24 horas.
+
+- **Proteção das rotas da API com JWT** — Todas as rotas de tarefas (`/todos`) agora exigem um token JWT válido no cabeçalho `Authorization`. Requisições sem token ou com token inválido recebem resposta `401`.
+
+- **Logout com limpeza de sessão** — Um botão "Sair" foi adicionado ao painel principal. Ao clicar, o token é removido e o usuário é redirecionado para a página de login.
+
+- **Redirecionamento automático por sessão** — Ao abrir o aplicativo, se um token válido já estiver salvo no `localStorage`, o usuário é levado direto ao painel. Caso contrário, é exibida a tela de login.
+
+- **Tratamento de token expirado** — Se a API retornar `401`, o aplicativo faz logout automático e redireciona o usuário para a tela de login.
+
+### ⚙️ Manutenção
+
+- **Dependência `jsonwebtoken` adicionada** — A biblioteca `jsonwebtoken` (v9.0.3) foi incluída na API para geração e validação de tokens JWT.
+
+---
+
 ## 29/06/2026
 
 ### Novidades
