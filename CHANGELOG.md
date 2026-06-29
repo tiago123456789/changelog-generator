@@ -1,5 +1,13 @@
 # Histórico de Mudanças
 
+## [2026-06-29 00:00] — Add Custom Changelog Finishing Touch
+
+### ⚙️ Chores & Maintenance
+
+- **Custom changelog recipe** — Added a custom changelog finishing touch recipe to automatically generate and prepend structured changelog entries to `CHANGELOG.md`, following Keep a Changelog standards with categorized sections for new features, bug fixes, and maintenance.
+
+---
+
 ## [2026-06-29 00:00] — Update Changelog
 
 ### ⚙️ Chores & Maintenance
