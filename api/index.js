@@ -38,11 +38,16 @@ let nextId = 1;
 const VALID_STATUSES = ['todo', 'in_progress', 'done'];
 
 app.post('/todos', authMiddleware, (req, res) => {
-  const { text } = req.body;
+  const { text, description } = req.body;
   if (!text || typeof text !== 'string' || !text.trim()) {
     return res.status(400).json({ error: 'text is required' });
   }
-  const todo = { id: nextId++, text: text.trim(), status: 'todo' };
+  const todo = {
+    id: nextId++,
+    text: text.trim(),
+    description: description && typeof description === 'string' ? description.trim() : '',
+    status: 'todo',
+  };
   todos.push(todo);
   res.status(201).json(todo);
 });
@@ -56,7 +61,12 @@ app.post('/todos/import', authMiddleware, (req, res) => {
   for (const item of items) {
     if (item && typeof item.text === 'string' && item.text.trim()) {
       const status = VALID_STATUSES.includes(item.status) ? item.status : 'todo';
-      created.push({ id: nextId++, text: item.text.trim(), status });
+      created.push({
+        id: nextId++,
+        text: item.text.trim(),
+        description: item.description && typeof item.description === 'string' ? item.description.trim() : '',
+        status,
+      });
     }
   }
   if (created.length === 0) {
@@ -76,7 +86,7 @@ app.put('/todos/:id', authMiddleware, (req, res) => {
   if (!todo) {
     return res.status(404).json({ error: 'todo not found' });
   }
-  const { text, status } = req.body;
+  const { text, status, description } = req.body;
   if (text !== undefined) {
     if (typeof text !== 'string' || !text.trim()) {
       return res.status(400).json({ error: 'text must be a non-empty string' });
@@ -88,6 +98,12 @@ app.put('/todos/:id', authMiddleware, (req, res) => {
       return res.status(400).json({ error: 'status must be todo, in_progress, or done' });
     }
     todo.status = status;
+  }
+  if (description !== undefined) {
+    if (typeof description !== 'string') {
+      return res.status(400).json({ error: 'description must be a string' });
+    }
+    todo.description = description.trim();
   }
   res.json(todo);
 });

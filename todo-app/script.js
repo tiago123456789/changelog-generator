@@ -7,6 +7,7 @@ function authHeaders() {
 }
 
 const input = document.getElementById('todo-input');
+const descriptionInput = document.getElementById('todo-description');
 const addBtn = document.getElementById('add-btn');
 const columnBodies = {
   todo: document.getElementById('column-todo'),
@@ -125,21 +126,34 @@ function render() {
       editInput.className = 'card-edit-input';
       editInput.value = todo.text;
 
+      const editDesc = document.createElement('textarea');
+      editDesc.className = 'card-edit-textarea';
+      editDesc.rows = 2;
+      editDesc.placeholder = 'Description (optional)';
+      editDesc.value = todo.description || '';
+
       const saveBtn = document.createElement('button');
       saveBtn.className = 'btn btn-save';
       saveBtn.textContent = 'Save';
-      saveBtn.addEventListener('click', () => saveTodo(todo.id, editInput));
+      saveBtn.addEventListener('click', () => saveTodo(todo.id, editInput, editDesc));
 
       const cancelBtn = document.createElement('button');
       cancelBtn.className = 'btn btn-cancel';
       cancelBtn.textContent = 'Cancel';
       cancelBtn.addEventListener('click', () => cancelEdit(todo.id));
 
-      card.append(editInput, saveBtn, cancelBtn);
+      card.append(editInput, editDesc, saveBtn, cancelBtn);
     } else {
       const textSpan = document.createElement('span');
       textSpan.className = 'card-text';
       textSpan.textContent = todo.text;
+
+      if (todo.description) {
+        const descSpan = document.createElement('span');
+        descSpan.className = 'card-description';
+        descSpan.textContent = todo.description;
+        card.appendChild(descSpan);
+      }
 
       const actions = document.createElement('div');
       actions.className = 'card-actions';
@@ -197,13 +211,15 @@ function render() {
 async function addTodo() {
   const text = input.value.trim();
   if (!text) return;
+  const description = descriptionInput.value.trim();
 
   await fetch(`${API_BASE}/todos`, {
     method: 'POST',
     headers: authHeaders(),
-    body: JSON.stringify({ text }),
+    body: JSON.stringify({ text, description }),
   });
   input.value = '';
+  descriptionInput.value = '';
   await fetchTodos();
 }
 
@@ -229,14 +245,15 @@ function startEdit(id) {
   }
 }
 
-async function saveTodo(id, inputEl) {
+async function saveTodo(id, inputEl, descEl) {
   const text = inputEl.value.trim();
   if (!text) return;
+  const description = descEl ? descEl.value.trim() : undefined;
 
   await fetch(`${API_BASE}/todos/${id}`, {
     method: 'PUT',
     headers: authHeaders(),
-    body: JSON.stringify({ text }),
+    body: JSON.stringify({ text, description }),
   });
   await fetchTodos();
 }
@@ -261,10 +278,11 @@ function exportCsv() {
 
   const rows = todos.map(t => {
     const text = `"${t.text.replace(/"/g, '""')}"`;
+    const description = `"${(t.description || '').replace(/"/g, '""')}"`;
     const status = `"${t.status}"`;
-    return `${text},${status},${exportedAt}`;
+    return `${text},${description},${status},${exportedAt}`;
   });
-  const csv = 'todo,kanban_board,exported_at\n' + rows.join('\n');
+  const csv = 'todo,description,kanban_board,exported_at\n' + rows.join('\n');
 
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
   const link = document.createElement('a');
@@ -363,15 +381,20 @@ function importCsv() {
         const text = fields[0].trim();
         if (!text) continue;
 
-        let status = 'todo';
+        let description = '';
         if (fields.length >= 2 && fields[1].trim()) {
-          const s = fields[1].trim().toLowerCase();
+          description = fields[1].trim();
+        }
+
+        let status = 'todo';
+        if (fields.length >= 3 && fields[2].trim()) {
+          const s = fields[2].trim().toLowerCase();
           if (['todo', 'in_progress', 'done'].includes(s)) {
             status = s;
           }
         }
 
-        items.push({ text, status });
+        items.push({ text, description, status });
       }
 
       if (!items.length) {
