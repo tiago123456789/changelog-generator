@@ -1,5 +1,11 @@
 # Histórico de Mudanças
 
+## [2026-06-30]
+
+### ⚙️ Chores & Maintenance
+
+- **Architecture documentation update** — Updated `README.md` with a Mermaid flowchart illustrating the changelog generation system architecture and added a numbered step-by-step explanation of the complete PR-to-changelog workflow (from opening a Feature PR through automated `CHANGELOG.md` rewrite).
+
 ## 30/06/2026
 
 ### ⚙️ Melhorias & Manutenção
