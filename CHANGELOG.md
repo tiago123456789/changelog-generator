@@ -2,6 +2,22 @@
 
 ## 30/06/2026
 
+### 🚀 New Features
+
+- **Todo description field** — Todos can now include an optional description when created or updated. The description is displayed on the card below the title in a smaller, muted style.
+
+- **Description input in the UI** — A textarea has been added next to the todo title input, allowing users to type an optional description when adding a new todo.
+
+- **Editable description on cards** — When editing an existing todo, a textarea pre-filled with the current description is shown, allowing inline updates.
+
+- **Description in CSV export** — The exported CSV file now includes a `description` column between `todo` and `kanban_board`, preserving description data when exporting.
+
+- **Description in CSV import** — The CSV importer now reads the `description` column (second field) so todos imported from CSV retain their descriptions.
+
+- **API support for description** — The `POST /todos`, `PUT /todos/:id`, and `POST /todos/import` endpoints all accept and persist the `description` field, with validation ensuring it is a string when provided.
+
+## 30/06/2026
+
 ### ⚙️ Melhorias & Manutenção
 
 - **Documentação da arquitetura do projeto** — O README foi atualizado com um diagrama de fluxo (Mermaid) que ilustra visualmente a arquitetura do sistema de geração de changelog, além de uma explicação passo a passo do fluxo completo, desde a abertura de um Pull Request até a reescrita automática do CHANGELOG.md.
