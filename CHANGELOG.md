@@ -4,6 +4,8 @@
 
 ### ⚙️ Chores & Maintenance
 
+- **Custom finishing touch changelog recipe added** — Configured and executed the `changelog` custom finishing touch recipe for CodeRabbit, which automatically generates and appends categorized changelog entries (🚀 New Features, 🐛 Bug Fixes, ⚙️ Chores & Maintenance) to `CHANGELOG.md` following Keep a Changelog standards on each PR.
+
 - **Changelog entry added** — Appended a new changelog entry to `CHANGELOG.md` documenting the architecture documentation update (Mermaid flowchart and step-by-step PR-to-changelog workflow description added to `README.md`).
 
 - **Architecture documentation update** — Updated `README.md` with a Mermaid flowchart illustrating the changelog generation system architecture and added a numbered step-by-step explanation of the complete PR-to-changelog workflow (from opening a Feature PR through automated `CHANGELOG.md` rewrite).
