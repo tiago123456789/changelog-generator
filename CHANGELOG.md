@@ -1,6 +1,6 @@
 # Histórico de Mudanças
 
-## 30/06/2026
+## 30/06/2026 — 00:00 UTC
 
 ### 🚀 New Features
 
@@ -15,8 +15,6 @@
 - **Description in CSV import** — The CSV importer now reads the `description` column (second field) so todos imported from CSV retain their descriptions.
 
 - **API support for description** — The `POST /todos`, `PUT /todos/:id`, and `POST /todos/import` endpoints all accept and persist the `description` field, with validation ensuring it is a string when provided.
-
-## 30/06/2026
 
 ### ⚙️ Melhorias & Manutenção
 
