@@ -2,7 +2,7 @@ name: PR File Change Automation
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize, reopened]
 
 permissions:
   pull-requests: write
@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   comment-on-pr:
+    if: startsWith(github.head_ref, 'feature/')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
