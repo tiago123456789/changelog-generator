@@ -4,6 +4,8 @@
 
 ### ⚙️ Chores & Maintenance
 
+- **Changelog recipe applied for "Add changelog" PR** — Executed the `changelog` custom finishing touch recipe for CodeRabbit on PR "🔧 CodeRabbit Recipe: Add changelog", appending a new ⚙️ Chores & Maintenance entry to `CHANGELOG.md` (2026-06-30 00:00:00).
+
 - **Changelog finishing touch recipe applied again** — Executed the `changelog` custom finishing touch recipe for CodeRabbit on PR "🔧 CodeRabbit Recipe: Add custom finishing touch changelog", appending a new ⚙️ Chores & Maintenance entry to `CHANGELOG.md` (2026-06-30 00:00:00).
 
 - **Changelog recipe executed for finishing touch PR** — Executed the `changelog` custom finishing touch recipe for CodeRabbit on PR "🔧 CodeRabbit Recipe: Add custom finishing touch changelog", appending a new ⚙️ Chores & Maintenance entry to `CHANGELOG.md` (2026-06-30 00:00:00).
