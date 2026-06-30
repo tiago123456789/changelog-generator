@@ -2,25 +2,23 @@
 
 ## 30/06/2026
 
-### 🚀 New Features
+### 🚀 Novas Funções
 
-- **Todo description field** — Todos can now include an optional description when created or updated. The description is displayed on the card below the title in a smaller, muted style.
+- **Descrição nas tarefas** — Agora você pode colocar uma descrição em cada tarefa na hora de criar ou editar. A descrição aparece no cartão, bem abaixo do título, com uma letra menor e mais suave.
 
-- **Description input in the UI** — A textarea has been added next to the todo title input, allowing users to type an optional description when adding a new todo.
+- **Campo de descrição na tela** — Ao lado do campo onde você digita o nome da tarefa, agora tem um espaço maior (textarea) para escrever uma descrição se quiser.
 
-- **Editable description on cards** — When editing an existing todo, a textarea pre-filled with the current description is shown, allowing inline updates.
+- **Descrição pode ser editada** — Quando você edita uma tarefa que já existe, aparece um campo com a descrição atual para você alterar.
 
-- **Description in CSV export** — The exported CSV file now includes a `description` column between `todo` and `kanban_board`, preserving description data when exporting.
+- **Descrição no arquivo de exportação** — Na hora de exportar os dados para CSV (planilha), a descrição também é incluída, entre o nome da tarefa e o quadro.
 
-- **Description in CSV import** — The CSV importer now reads the `description` column (second field) so todos imported from CSV retain their descriptions.
+- **Descrição na importação** — Quando você importa um arquivo CSV, o sistema também lê a coluna de descrição, então nada se perde.
 
-- **API support for description** — The `POST /todos`, `PUT /todos/:id`, and `POST /todos/import` endpoints all accept and persist the `description` field, with validation ensuring it is a string when provided.
+- **Descrição na API** — Tudo que você envia ou recebe do servidor também passa a incluir a descrição, sem complicação.
 
-## 30/06/2026
+### ⚙️ Melhorias e Ajustes
 
-### ⚙️ Melhorias & Manutenção
-
-- **Documentação da arquitetura do projeto** — O README foi atualizado com um diagrama de fluxo (Mermaid) que ilustra visualmente a arquitetura do sistema de geração de changelog, além de uma explicação passo a passo do fluxo completo, desde a abertura de um Pull Request até a reescrita automática do CHANGELOG.md.
+- **Explicação visual do projeto** — O README foi atualizado com um diagrama que mostra como o sistema funciona, com desenhos e explicações passo a passo, desde a abertura de um Pull Request até a atualização automática deste histórico.
 
 ## 29/06/2026
 
