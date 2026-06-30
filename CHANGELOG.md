@@ -1,5 +1,11 @@
 # Histórico de Mudanças
 
+## 30/06/2026
+
+### ⚙️ Melhorias & Manutenção
+
+- **Documentação da arquitetura do projeto** — O README foi atualizado com um diagrama de fluxo (Mermaid) que ilustra visualmente a arquitetura do sistema de geração de changelog, além de uma explicação passo a passo do fluxo completo, desde a abertura de um Pull Request até a reescrita automática do CHANGELOG.md.
+
 ## 29/06/2026
 
 ### 🔒 Login e Segurança
